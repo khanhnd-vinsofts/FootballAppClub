@@ -13,7 +13,7 @@ export default class SignIn extends Component {
                 <View style={{position: 'absolute', top: 0, bottom: 0, right: 0, left: 0, opacity: 0.2}}>
                     <Image source={require('../../assets/images/background.png')} />
                 </View>
-                <View style={{ justifyContent: 'center', alignItems: 'center', top: 100 }}>
+                <View style={{ justifyContent: 'center', alignItems: 'center', top: '17%' }}>
                     <BaseText style={{ color: '#006BEE', fontSize: 40}}>YOUR LOGO</BaseText>
                 </View>
                 <View style={styles.layout}>
@@ -38,7 +38,7 @@ export default class SignIn extends Component {
                         />
                     </View>
                 </View>
-                <View style={{ flex: 1, justifyContent: 'center', left: 5 }}>
+                <View style={{ flex: 1, alignItems: 'center', marginTop: '40%' }}>
                     <TouchableOpacity
                         style={styles.button}
                         onPress={() => this.props.navigation.navigate('FootballTeam')}
@@ -53,11 +53,13 @@ export default class SignIn extends Component {
 
                     </TouchableOpacity>
                 </View>
+
                 <View style={styles.Signin}>
-                    <BaseText style={{ color: '#006BEE', fontSize: 12 }}>Quên mật khẩu</BaseText>
-                    <BaseText style={{ color: '#006BEE', fontSize: 13, top: 25 }} bold={true}>Đăng nhập bằng</BaseText>
+                    <BaseText style={{ color: '#006BEE', fontSize: 13, marginTop: '3%' }}>Quên mật khẩu</BaseText>
+                    <BaseText style={{ color: '#006BEE', fontSize: 15, marginTop: '7%' }} bold={true}>Đăng nhập bằng</BaseText>
                 </View>
-                <View style={{ flexDirection: 'row', bottom: 60, justifyContent: 'center', alignItems: 'center' }}>
+                
+                <View style={{ flexDirection: 'row', marginBottom: '15%', justifyContent: 'center', alignItems: 'center' }}>
                     <TouchableOpacity>
                         <View style={{ width: 50, height: 50, borderRadius: 25, borderColor: '#006BEE', borderWidth: 1, justifyContent: "center", alignItems: 'center', marginRight: 10 }}>
                             <Image source={require('../../assets/images/facebook.png')} style={{ width: 20, height: 20 }} resizeMode="contain"/>
@@ -68,7 +70,6 @@ export default class SignIn extends Component {
                             <Image source={require('../../assets/images/google.png')} style={{ width: 20, height: 20 }} resizeMode="contain" />
                         </View>
                     </TouchableOpacity>
-
 
                 </View>
             </View>
@@ -85,10 +86,10 @@ const styles = StyleSheet.create({
     },
     layout: {
         flexDirection: 'row',
-        top: 170
+        top: '40%'
     },
     inputBox: {
-        width: 250,
+        width: '85%',
     },
     button: {
         width: 280,
@@ -96,7 +97,7 @@ const styles = StyleSheet.create({
         borderRadius: 25,
         marginVertical: 6,
         paddingVertical: 5,
-        top: 30
+       marginTop: '10%',
     },
     button1: {
         width: 280,
@@ -105,7 +106,7 @@ const styles = StyleSheet.create({
         paddingVertical: 5,
         borderColor: '#0072FB',
         borderWidth: 1,
-        top: 30
+        marginTop: '2%',
     },
     buttonText: {
         fontSize: 16,
@@ -118,7 +119,7 @@ const styles = StyleSheet.create({
         textAlign: 'center',
     },
     Signin: {
-        bottom: 130,
+       marginBottom: '17%',
         alignItems: 'center',
     }
 })

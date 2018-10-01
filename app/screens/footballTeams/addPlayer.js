@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, StyleSheet, Image, TouchableHighlight } from 'react-native';
+import { View, Text, StyleSheet, Image, TouchableHighlight, ScrollView } from 'react-native';
 import BaseText from '../../components/baseText';
 import BaseInput from '../../components/baseInput';
 
@@ -23,6 +23,9 @@ export default class AddPlayerScreen extends Component {
                     </View>
                 </View>
 
+                <ScrollView 
+                    showsVerticalScrollIndicator={false}
+                >
                 <View style={styles.layoutForm}>
                     <View >
                         <BaseText style={styles.textInfo} bold={true}>Thông tin bắt buộc</BaseText>
@@ -54,9 +57,9 @@ export default class AddPlayerScreen extends Component {
                                     placeholder="Số áo"
                                 />
                             </View>
-                            <View style={{ flex: 1 }}>
+                            <View style={{ flex: 1, marginLeft: 17 }}>
                                 <BaseInput
-                                    style={{ width: 130 }}
+                                    style={{ width: 140 }}
                                     placeholder="Quốc tịch"
                                 />
                             </View>
@@ -80,6 +83,7 @@ export default class AddPlayerScreen extends Component {
                         </View>
                     </View>
                 </View>
+                </ScrollView>
                 <TouchableHighlight
                         style={{
                             width: 50,
@@ -121,7 +125,7 @@ const styles = StyleSheet.create({
     layoutForm: {
         flexDirection: 'column',
         marginTop: 15,
-        marginLeft: 30,
+        alignItems: 'center',
     },
     textInfo: {
         fontSize: 18,
