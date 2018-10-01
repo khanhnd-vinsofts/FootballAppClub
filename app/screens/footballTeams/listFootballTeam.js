@@ -165,13 +165,6 @@ export default class FootballTeamScreen extends Component {
 
         return (
             <View style={styles.container}>
-                {/* <TextInput
-                    style={{ width: '95%', height: 40, marginHorizontal: 10, padding: 10, borderWidth: 1, borderColor: 'black', top: 10, bottom: 10 }}
-                    onChangeText={(text) => this.search(text)}
-                    value={this.state.text}
-                    underlineColorAndroid='transparent'
-                    placeholder="Search"
-                /> */}
                 <View style={styles.layoutHeader}>
                     <TouchableHighlight
                         style={[styles.touchableArrow, { left: 10 }]}
@@ -182,7 +175,7 @@ export default class FootballTeamScreen extends Component {
                     </TouchableHighlight>
                     <View style={{ flexDirection: 'column', width: 272, alignItems: 'center', top: 10 }}>
                         <BaseText style={{ fontSize: 18, color: '#ffffff' }} bold={true}>{screen.status}</BaseText>
-                        <BaseText style={{ fontSize: 26, color: '#ffffff', fontWeight: '500',  }} bold={true}>{this.state.dataFilter.length}</BaseText>
+                        <BaseText style={{ fontSize: 28, color: '#ffffff', fontWeight: '500',  }} bold={true}>{this.state.dataFilter.length}</BaseText>
                     </View>
                     <TouchableHighlight
                         style={[styles.touchableArrow, { right: 10 }]}
@@ -215,7 +208,7 @@ export default class FootballTeamScreen extends Component {
                         );
                     }}
                 />
-                <View style={{ flexDirection: 'row', left: 130, marginBottom: 20 }}>
+                <View style={{ flexDirection: 'row', left: 130 }}>
                     
                 <TouchableOpacity
                         style={{
@@ -226,7 +219,7 @@ export default class FootballTeamScreen extends Component {
                             justifyContent: 'center',
                             alignItems: 'center',
                             position: 'absolute',
-                            bottom: 0,
+                            bottom: 20,
                             right: 0
                         }}
                         onPress={() => this.props.navigation.navigate('AddPlayer')}
@@ -254,7 +247,7 @@ const styles = StyleSheet.create({
     },
     layoutHeader: {
         width: '92%',
-        height: 90,
+        height: 80,
         backgroundColor: '#0072FB',
         top: 3,
         borderRadius: 5,
@@ -277,7 +270,6 @@ const styles = StyleSheet.create({
     ListPlayer: {
         width: '100%',
         marginTop: 20,
-        marginBottom: 10
     },
     ListMember: {
         width: '100%',
