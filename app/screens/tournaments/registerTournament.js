@@ -1,22 +1,85 @@
 import React, { Component } from 'react';
-import { View, Text, StyleSheet, TouchableHighlight, Image, FlatList } from 'react-native';
+import { View, Text, StyleSheet, TouchableHighlight, Image, FlatList, Alert } from 'react-native';
+import Swipeout from 'react-native-swipeout';
+
 import BaseInput from '../../components/baseInput';
 import BaseText from '../../components/baseText';
 import dataPlayer from '../../data/dataPlayer';
 
 class DataPlayerScreen extends Component {
+    state = {
+        activeKey: null,
+    }
     render() {
+        const swipeSettings = {
+            autoClose: true,
+            onClose: (secId, rowId, direction) => {
+                if (this.state.activeRowKey != null) {
+                    this.setState({ activeRowKey: null });
+                }
+            },
+            onOpen: (secId, rowId, direction) => {
+                this.setState({ activeRowKey: this.props.item.id });
+            },
+            right: [
+                {
+                    onPress: () => {
+                        Alert.alert(
+                            'Thông báo',
+                            'Bạn có chắc chắn muốn cầu thủ này làm đội trưởng ?',
+                            [
+                                {
+                                    text: 'Đồng ý', onPress: () => {
+                                    }
+                                },
+                                { text: 'Từ chối', onPress: () => console.log('Cancel Pressed'), style: 'cancel' },
+                            ],
+                            { cancelable: true }
+                        );
+                    },
+                    text: 'C', type: 'primary'
+                },
+                {
+                    onPress: () => {
+                        const deletingRow = this.state.activeRowKey;
+                        Alert.alert(
+                            'Thông báo',
+                            'Bạn có chắc chắn muốn xóa cầu thủ này không ?',
+                            [
+                                {
+                                    text: 'Đồng ý', onPress: () => {
+                                        dataPlayer.splice(this.props.index, 1);
+
+                                        //Refresh Flatlist
+                                        this.props.parentFlatList.refreshFlatList(deletingRow);
+                                    }
+                                },
+                                { text: 'Từ chối', onPress: () => console.log('Cancel Pressed'), style: 'cancel' },
+                            ],
+                            { cancelable: true }
+                        );
+                    },
+                    text: 'Delete', type: 'delete'
+                }
+            ],
+            rowId: this.props.index,
+            sectionId: 1
+
+        }
         return (
-            <View style={[styles.ListMember, { backgroundColor: this.props.index % 2 == 0 ? '#F6F6F6' : '#ffffff' }]}>
-                <View style={styles.Image}></View>
-                <View style={{ marginLeft: 30, flexDirection: 'column', width: '45%' }}>
-                    <BaseText style={{ fontSize: 18, color: '#222222' }} bold={true}>{this.props.item.name}</BaseText>
-                    <BaseText style={{ fontSize: 13, color: '#A9ABAB' }} bold={true}>{this.props.item.birth}</BaseText>
+            <Swipeout {...swipeSettings}>
+                <View style={[styles.ListMember, { backgroundColor: this.props.index % 2 == 0 ? '#F6F6F6' : '#ffffff' }]}>
+                    <View style={styles.Image}></View>
+                    <View style={{ marginLeft: 30, flexDirection: 'column', width: '45%' }}>
+                        <BaseText style={{ fontSize: 18, color: '#222222' }} bold={true}>{this.props.item.name}</BaseText>
+                        <BaseText style={{ fontSize: 13, color: '#A9ABAB' }} bold={true}>{this.props.item.birth}</BaseText>
+                    </View>
+                    <View style={{ marginLeft: 30,  }}>
+                        <BaseText style={{ fontSize: 20, color: '#0072FB', fontWeight: 'bold' }} bold={true}>C</BaseText>
+                        <BaseText style={{ fontSize: 13, color: '#A9ABAB' }} bold={true}>{this.props.item.position}</BaseText>
+                    </View>
                 </View>
-                <View style={{ marginLeft: 30, marginTop: 20, }}>
-                    <BaseText style={{ fontSize: 13, color: '#A9ABAB' }} bold={true}>{this.props.item.position}</BaseText>
-                </View>
-            </View>
+            </Swipeout>
         );
     }
 }
@@ -24,6 +87,16 @@ class DataPlayerScreen extends Component {
 export default class RegisterTournamentScreen extends Component {
     static navigationOptions = {
         header: null,
+    }
+
+    state = {deleteRowKey: null}
+
+    refreshFlatList = (deleteKey) => {
+        this.setState((prevstate) => {
+            return {
+                deleteRowKey: deleteKey
+            };
+        });
     }
     render() {
         return (
@@ -41,7 +114,7 @@ export default class RegisterTournamentScreen extends Component {
                         placeholder="Nhập tên đội"
                     />
                 </View>
-                <View style={{flex: 1, marginTop: 15, marginBottom: 10 }}>
+                <View style={{ flex: 1, marginTop: 15, marginBottom: 10 }}>
                     <BaseText style={{ fontSize: 17, color: '#0072FB', marginLeft: 30 }} bold>Danh sách cầu thủ (15)</BaseText>
                     <FlatList
                         style={{ marginTop: 10, }}
@@ -49,38 +122,38 @@ export default class RegisterTournamentScreen extends Component {
                         keyExtractor={(index) => index.toString()}
                         renderItem={({ item, index }) => {
                             return (
-                                <DataPlayerScreen item={item} index={index}>
+                                <DataPlayerScreen item={item} index={index} parentFlatList={this}>
 
                                 </DataPlayerScreen>
                             );
                         }}
                     />
                 </View>
-                <View style={{  marginBottom: 20, marginRight: 30 }}>
-                    
+                <View style={{ marginBottom: 20, marginRight: 30 }}>
+
                     <TouchableHighlight
-                            style={{
-                                width: 50,
-                                height: 50,
-                                borderRadius: 25,
-                                backgroundColor: '#0072FB',
-                                justifyContent: 'center',
-                                alignItems: 'center',
-                                position: 'absolute',
-                                bottom: 0,
-                                right: 0
-                            }}
-                            // onPress={() => this.props.navigation.navigate('AddPlayer')}
-                        >
-                            <Image 
-                                source={require('../../assets/images/send.png')}
-                                style={{width: 15, height: 15}}
-                                resizeMode="contain"
-                            />
-                        </TouchableHighlight>
-                        
-                    </View>
-    
+                        style={{
+                            width: 50,
+                            height: 50,
+                            borderRadius: 25,
+                            backgroundColor: '#0072FB',
+                            justifyContent: 'center',
+                            alignItems: 'center',
+                            position: 'absolute',
+                            bottom: 0,
+                            right: 0
+                        }}
+                    // onPress={() => this.props.navigation.navigate('AddPlayer')}
+                    >
+                        <Image
+                            source={require('../../assets/images/send.png')}
+                            style={{ width: 15, height: 15 }}
+                            resizeMode="contain"
+                        />
+                    </TouchableHighlight>
+
+                </View>
+
             </View>
         );
     }
