@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { View, Text, StyleSheet, TouchableHighlight, Image, FlatList, Alert } from 'react-native';
-import Swipeout from 'react-native-swipeout';
 
 import BaseInput from '../../components/baseInput';
 import BaseText from '../../components/baseText';
@@ -12,15 +11,21 @@ export default class RegisterTournamentScreen extends Component {
         header: null,
     }
 
-    state = { deleteRowKey: null }
+    state = { 
+       refreshData: null
+     }
 
-    refreshFlatList = (deleteKey) => {
+     //REFRESH FLATLISTDATA
+
+    refreshFlatList = (refreshKey) => {
         this.setState((prevstate) => {
             return {
-                deleteRowKey: deleteKey
+                refreshData: refreshKey
             };
         });
     }
+
+
     render() {
         return (
             <View style={styles.container}>
@@ -33,18 +38,27 @@ export default class RegisterTournamentScreen extends Component {
                 </TouchableHighlight>
                 <View style={{ alignItems: 'center' }}>
                     <BaseInput
-                        style={{ alignItems: 'center', }}
+
                         placeholder="Nhập tên đội"
                     />
                 </View>
                 <View style={{ flex: 1, marginTop: 15 }}>
-                    <BaseText style={{ fontSize: 17, color: '#0072FB', marginLeft: '8%' }} bold>Danh sách cầu thủ (15)</BaseText>
+                    <View style={{ flexDirection: 'row'}}>
+                        <BaseText style={{ fontSize: 17, color: '#0072FB', marginLeft: '8%' }} bold>Danh sách cầu thủ (15)</BaseText>
+                        <TouchableHighlight>
+                            <View style={{ flexDirection: 'row', marginLeft: '29%', justifyContent: 'center', alignItems: 'center' }}>
+                                <Image source={require('../../assets/images/add.png')} style={{ width: 12, height: 12, tintColor: '#0072FB', marginRight: 5 }} />
+                                <BaseText style={{ fontSize: 17, color: '#0072FB', marginBottom: 2 }} bold>Thêm</BaseText>
+                            </View>
+                        </TouchableHighlight>
+                    </View>
                     <FlatList
                         style={{ marginTop: 20, }}
                         data={dataPlayer}
+                        keyExtractor={(item, index) => index.toString()}
                         renderItem={({ item, index }) => {
                             return (
-                                <DataPlayerScreen item={item} index={index}  parentFlatList={this}>
+                                <DataPlayerScreen item={item} index={index} parentFlatList={this}>
 
                                 </DataPlayerScreen>
                             );

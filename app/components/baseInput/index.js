@@ -13,9 +13,11 @@ export default props => <TextInput
 const styles = StyleSheet.create({
     container: {
         width: 300,
+        paddingTop: 10,
+        paddingBottom: -10,
         borderBottomWidth: 0.5,
         color: '#626463',
         borderColor: '#006BEE',
-        fontFamily: Fonts.DisplayRegular
+        fontFamily: Fonts.DisplayRegular,
     }
 })

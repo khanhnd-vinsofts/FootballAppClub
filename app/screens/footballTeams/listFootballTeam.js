@@ -10,27 +10,22 @@ export default class FootballTeamScreen extends Component {
         members: [
             {
                 status: 'Tổng số cầu thủ',
-                total: '',
                 id: 0
             },
             {
                 status: 'Hậu vệ',
-                total: '',
                 id: 1
             },
             {
                 status: 'Tiền vệ',
-                total: '',
                 id: 2
             },
             {
                 status: 'Tiền đạo',
-                total: '',
                 id: 3
             },
             {
                 status: 'Thủ môn',
-                total: '',
                 id: 4
             },
         ],
@@ -110,7 +105,7 @@ export default class FootballTeamScreen extends Component {
 
         ],
         screen: 0,
-        dataFilter: []
+        dataFilter: [],
     };
     componentDidMount() {
         this.setState({ dataFilter: this.state.data });
@@ -140,6 +135,7 @@ export default class FootballTeamScreen extends Component {
             dataFilter = this.state.data;
         }
         this.setState({ dataFilter });
+        
     }
     filterPositionLeft() {
         let screen = this.state.screen - 1;
