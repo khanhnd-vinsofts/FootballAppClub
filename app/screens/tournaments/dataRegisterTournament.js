@@ -6,7 +6,7 @@ import Swipeout from 'react-native-swipeout';
 import BaseText from '../../components/baseText';
 import dataPlayer from '../../data/dataPlayer';
 
-export default class DataPlayerScreen extends Component {
+export default class DataRegisterTournament extends Component {
     state = {
         activeRowKey: null,
     }

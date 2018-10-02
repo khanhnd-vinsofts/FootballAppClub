@@ -182,44 +182,46 @@ export default class FootballTeamScreen extends Component {
                         <Image source={require('../../assets/images/arrow-right.png')} style={styles.arrow} resizeMode="contain" />
                     </TouchableHighlight>
                 </View>
+                
+                {/* Bắt nhưng vị trí còn thiếu đưa ra cảnh báo  */}
 
-                    {this.state.dataFilter.length === 0 ?
-                        <View style={styles.Warning}>
-                            <View style={{ flexDirection: 'row' }}>
-                                <Image source={require('../../assets/images/football.png')} style={{ width: 70, height: 70, tintColor: '#666666' }} resizeMode="contain" />
-                                <Image source={require('../../assets/images/close.png')} style={{ width: 25, height: 25, tintColor: '#CC0000', marginLeft: -16, marginTop: 45 }} resizeMode="contain" />
-                            </View>
-                           <View style={{marginTop: '5%', alignItems: 'center'}}>
-                           <BaseText style={{fontSize: 16}} bold>Bạn chưa có hậu vệ nào trong đội bóng.</BaseText>
-                            <BaseText style={{fontSize: 16}} bold>Click vào button (+) để thêm vị trí mới này.</BaseText>
-                           </View>
+                {this.state.dataFilter.length === 0 ?
+                    <View style={styles.Warning}>
+                        <View style={{ flexDirection: 'row' }}>
+                            <Image source={require('../../assets/images/football.png')} style={{ width: 70, height: 70, tintColor: '#777777' }} resizeMode="contain" />
+                            <Image source={require('../../assets/images/close.png')} style={{ width: 25, height: 25, tintColor: '#CC0000', marginLeft: -16, marginTop: 45 }} resizeMode="contain" />
                         </View>
-                        :
-                        <FlatList
-                            data={this.state.dataFilter}
-                            style={styles.ListPlayer}
-                            keyExtractor={(item, index) => index.toString()}
-                            renderItem={({ item }) => {
-                                return (
-                                    <TouchableHighlight
-                                        onPress={() => this.props.navigation.navigate('DetailPlayer')}
-                                    >
-                                        <View style={[item.id % 2 === 0 ? styles.ListMember : styles.ListMember1]}>
-                                            <View style={styles.Image}></View>
-                                            <View style={{ marginLeft: 30, flexDirection: 'column', width: '45%' }}>
-                                                <BaseText style={{ fontSize: 18, color: '#222222' }} bold={true}>{item.name}</BaseText>
-                                                <BaseText style={{ fontSize: 13, color: '#A9ABAB' }} bold={true}>{item.birth}</BaseText>
-                                            </View>
-                                            <View style={{ marginLeft: 60, marginTop: 11, width: 100 }}>
-                                                <BaseText style={{ fontSize: 13, color: '#A9ABAB' }} bold={true}>{this.viewPosition(item.position)}</BaseText>
-                                            </View>
+                        <View style={{ marginTop: '5%', alignItems: 'center' }}>
+                            <BaseText style={{ fontSize: 16 }} bold>Bạn chưa có {screen.status} nào trong đội bóng.</BaseText>
+                            <BaseText style={{ fontSize: 16 }} bold>Click vào button (+) để thêm vị trí mới này.</BaseText>
+                        </View>
+                    </View>
+                    :
+                    <FlatList
+                        data={this.state.dataFilter}
+                        style={styles.ListPlayer}
+                        keyExtractor={(item, index) => index.toString()}
+                        renderItem={({ item }) => {
+                            return (
+                                <TouchableHighlight
+                                    onPress={() => this.props.navigation.navigate('DetailPlayer')}
+                                >
+                                    <View style={[item.id % 2 === 0 ? styles.ListMember : styles.ListMember1]}>
+                                        <View style={styles.Image}></View>
+                                        <View style={{ marginLeft: 30, flexDirection: 'column', width: '45%' }}>
+                                            <BaseText style={{ fontSize: 18, color: '#222222' }} bold={true}>{item.name}</BaseText>
+                                            <BaseText style={{ fontSize: 13, color: '#A9ABAB' }} bold={true}>{item.birth}</BaseText>
                                         </View>
-                                    </TouchableHighlight>
-                                );
-                            }}
-                        />
-                    }
-               
+                                        <View style={{ marginLeft: 60, marginTop: 11, width: 100 }}>
+                                            <BaseText style={{ fontSize: 13, color: '#A9ABAB' }} bold={true}>{this.viewPosition(item.position)}</BaseText>
+                                        </View>
+                                    </View>
+                                </TouchableHighlight>
+                            );
+                        }}
+                    />
+                }
+
                 <View style={{ flexDirection: 'row', left: 130 }}>
                     <TouchableOpacity
                         style={{
