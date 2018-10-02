@@ -1,30 +1,22 @@
 
 import React, { Component } from 'react';
-import { View, Text, StyleSheet, TouchableHighlight, Image, FlatList, Alert } from 'react-native';
+import { View, Text, StyleSheet, Alert } from 'react-native';
 import Swipeout from 'react-native-swipeout';
 
 import BaseText from '../../components/baseText';
+import dataPlayer from '../../data/dataPlayer';
 
 export default class DataPlayerScreen extends Component {
     state = {
-        activeKey: null,
-        caption: true,
-        playerCaption: 'C'
+        activeRowKey: null,
     }
-    showCaption = () => {
-        let CaptionPlayer = this.dataPlayer.map(item => this.props.id == item.id);
-        if (item.id === id) {
-            d.caption = true
-        } else {
-            d.caption = false
-        }
-        this.setState({CaptionPlayer})
-        // console.log(CaptionPlayer)
-    }
+
     render() {
+
         const swipeSettings = {
             autoClose: true,
             onClose: (secId, rowId, direction) => {
+
                 if (this.state.activeRowKey != null) {
                     this.setState({ activeRowKey: null });
                 }
@@ -35,20 +27,34 @@ export default class DataPlayerScreen extends Component {
             right: [
                 {
                     onPress: () => {
+                        const addCaptain = this.state.activeRowKey;
                         Alert.alert(
                             'Thông báo',
                             'Bạn có chắc chắn muốn cầu thủ này làm đội trưởng ?',
                             [
-                                { text: 'Đồng ý', onPress: () => { this.showCaption } },
+                                {
+                                    text: 'Đồng ý', onPress: () => {
+                                        dataPlayer.map(data => {
+                                            let captain = false;
+                                            if (data.id === addCaptain) {
+                                                captain = true;
+                                            }
+                                            data.captain = captain;
+                                            return data;
+                                            // console.log(data);
+                                        })
+                                        this.props.parentFlatList.refreshFlatList(addCaptain);
+                                    }
+                                },
                                 { text: 'Từ chối', onPress: () => console.log('Cancel Pressed'), style: 'cancel' },
-                                
+
                             ],
                             { cancelable: true }
-                           
+
                         );
                     },
                     text: 'C', type: 'primary',
-                    
+
                 },
                 {
                     onPress: () => {
@@ -86,7 +92,7 @@ export default class DataPlayerScreen extends Component {
                         <BaseText style={{ fontSize: 13, color: '#A9ABAB' }} bold={true}>{this.props.item.birth}</BaseText>
                     </View>
                     <View style={{ marginLeft: 30, }}>
-                        <BaseText style={{ fontSize: 20, color: '#0072FB', fontWeight: 'bold', marginLeft: 25 }} bold={true}>{this.state.CaptionPlayer}</BaseText>
+                        <BaseText style={{ fontSize: 20, color: '#0072FB', fontWeight: 'bold', marginLeft: 25 }} bold={true}>{this.props.item.captain ? "C" : null}</BaseText>
                         <BaseText style={{ fontSize: 13, color: '#A9ABAB' }} bold={true}>{this.props.item.position}</BaseText>
                     </View>
                 </View>
@@ -95,7 +101,7 @@ export default class DataPlayerScreen extends Component {
     }
 }
 const styles = StyleSheet.create({
-  
+
     ListMember: {
         width: '100%',
         height: 70,

@@ -2,9 +2,16 @@ import { Dimensions } from 'react-native'
 import { createStackNavigator, createDrawerNavigator } from 'react-navigation';
 
 import DrawerMenu from '../screens/drawerMenu';
-import { SignIn, SignUp, FootballTeamScreen,DetailPlayerScreen, AddPlayerScreen, TournamentScreen, DetailTournamentScreen , RegisterTournamentScreen } from '../screens';
+import { SignIn, SignUp, 
+    FootballTeamScreen,
+    DetailPlayerScreen,
+     AddPlayerScreen, 
+    TournamentScreen, 
+    DetailTournamentScreen , 
+    RegisterTournamentScreen, 
+    ListRecordScreen 
+} from '../screens';
 
-import RecordScreen from '../screens/records';
 import ExpenseScreen from '../screens/expenses';
 import SettingScreen from '../screens/settings';
 
@@ -23,7 +30,7 @@ const MainScreenNavigator = createStackNavigator({
     DetailTournament: {screen: DetailTournamentScreen},
     RegisterTournament : {screen: RegisterTournamentScreen},
     
-    Record: { screen: RecordScreen },
+    Record: { screen: ListRecordScreen },
     Expense: { screen: ExpenseScreen },
     Setting: { screen: SettingScreen },
    
