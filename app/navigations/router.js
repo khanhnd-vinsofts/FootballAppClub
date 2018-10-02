@@ -22,9 +22,9 @@ const MainScreenNavigator = createStackNavigator({
     // SignIn: { screen: SignIn },
     // SignUp: { screen: SignUp },
 
-    // FootballTeam: { screen: FootballTeamScreen },
-    // AddPlayer: {screen: AddPlayerScreen },
-    // DetailPlayer: {screen: DetailPlayerScreen},
+    FootballTeam: { screen: FootballTeamScreen },
+    AddPlayer: {screen: AddPlayerScreen },
+    DetailPlayer: {screen: DetailPlayerScreen},
 
     Tournament: { screen: TournamentScreen },
     DetailTournament: {screen: DetailTournamentScreen},
