@@ -38,7 +38,7 @@ export default class DetailPlayerScreen extends Component {
 
                     </View>
 
-                    <View style={{ flexDirection: 'row', marginTop: 70, marginLeft: 35 }}>
+                    <View style={{ flexDirection: 'row', marginTop: 50, marginLeft: 35, marginBottom: 30 }}>
 
                         <TouchableHighlight style={styles.button} >
                             <Image

@@ -19,7 +19,7 @@ export default class AddPlayerScreen extends Component {
                         <Image source={require('../../assets/images/close.png')} style={{ width: 10, height: 10 }} />
                     </TouchableHighlight>
                     <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', marginRight: 25 }}>
-                        <Image source={require('../../assets/images/ronando.png')} style={{ width: 170, height: 170 }} resizeMode="contain" />
+                        <Image source={require('../../assets/images/ronando.png')} style={{ width: 190, height: 190 }} resizeMode="contain" />
                     </View>
                 </View>
 
@@ -117,7 +117,7 @@ const styles = StyleSheet.create({
         backgroundColor: '#ffffff'
     },
     header: {
-        height: 170,
+        height: 190,
         backgroundColor: '#0072FB',
         flexDirection: 'row',
         

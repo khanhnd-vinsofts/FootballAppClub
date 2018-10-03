@@ -6,8 +6,8 @@ export default props => <TextInput
     {...props}
     style={[styles.container, props.style]}
     underlineColorAndroid='rgba(0,0,0,0)'
-    placeholderTextColor="#CCCCCC"
-    selectionColor="#DDDDDD"
+    placeholderTextColor="#AAAAAA"
+    selectionColor="#666666"
 />
 
 const styles = StyleSheet.create({
@@ -16,7 +16,7 @@ const styles = StyleSheet.create({
         paddingTop: 10,
         paddingBottom: -10,
         borderBottomWidth: 0.5,
-        color: '#626463',
+        color: '#555555',
         borderColor: '#006BEE',
         fontFamily: Fonts.DisplayRegular,
     }
