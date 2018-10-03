@@ -6,25 +6,16 @@ import BaseText from '../../components/baseText';
 import dataPlayer from '../../data/dataPlayer';
 
 
+import RegisterTournamentScreen from '../tournaments/registerTournament';
+
 export default class ListRecordPlayer extends Component {
 
     static navigationOptions = {
         header: null,
     }
-    state = {
-        refreshData: null
-    }
+   
 
-    //REFRESH FLATLISTDATA
-
-    refreshFlatList = (refreshKey) => {
-        this.setState((prevstate) => {
-            return {
-                refreshData: refreshKey
-            };
-        });
-    }
-
+   
 
     render() {
         return (
@@ -79,7 +70,7 @@ export default class ListRecordPlayer extends Component {
                             bottom: 20,
                             right: 0
                         }}
-                    // onPress={() => this.props.navigation.navigate('AddPlayer')}
+                    onPress={() => this.props.navigation.navigate(RegisterTournamentScreen)}
                     >
                         <Image
                             source={require('../../assets/images/edit.png')}

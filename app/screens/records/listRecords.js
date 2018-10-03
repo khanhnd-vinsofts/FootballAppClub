@@ -1,10 +1,17 @@
 import React, { Component } from "react";
-import { StyleSheet, Text, View, ScrollView, TouchableHighlight } from "react-native";
+import { StyleSheet, Text, View, FlatList, TouchableHighlight } from "react-native";
 
 import IconDrawerNavigator from '../../components/drawerNavigator';
 import IconSearch from '../../components/search';
-
 import BaseText from '../../components/baseText';
+import dataTournament from '../../data/dataTournament';
+
+import Modal from 'react-native-modal';
+
+// const color1 = '#ADAEAE',
+// const color2 = '#FFBB4F',
+// const color3 = '#6CAAFD',
+// const color4 = '#FF6362',
 
 export default class DataRegisterTournament extends Component {
     static navigationOptions = () => ({
@@ -17,73 +24,62 @@ export default class DataRegisterTournament extends Component {
             <IconSearch />
         )
     });
+    // state = {
+    //     status : [
+    //         {
+    //             id:1,
+    //             name: 'Draft'
+    //         },
+    //         {
+    //             id:2,
+    //             name: 'Đang chờ xử lý'
+    //         },
+    //         {
+    //             id:3,
+    //             name: 'Gửi thành công'
+    //         },
+    //         {
+    //             id:4,
+    //             name: 'Bị từ chối'
+    //         },
+    //     ]
+    // }
+    state = {
+        isModalVisible: false,
+    }
+
     render() {
         return (
             <View style={styles.container}>
-                <ScrollView
-                    showsVerticalScrollIndicator={false}
-                >
-                    <TouchableHighlight
-                        style={{ marginTop: 10 }}
-                        onPress={() => this.props.navigation.navigate('ListRecordPlayer')}
-                    >
-                        <View style={styles.layout}>
-                            <BaseText style={{ fontSize: 18, fontWeight: 'bold', marginLeft: 7, color: '#000000' }}>Giải đấu trẻ Nam Định</BaseText>
-                            <View style={{ flexDirection: 'row' }}>
-                                <BaseText style={{ fontSize: 16, marginLeft: 7 }} bold>20/9 - 30/9</BaseText>
-                                <View style={{ flex: 1, alignItems: 'flex-end' }}>
-                                    <BaseText style={{ marginRight: 5, fontSize: 16, color: '#ADAEAE' }} bold>Draft</BaseText>
-                                </View>
+                <FlatList
+                    style={{ marginTop: 5, }}
+                    data={dataTournament}
+                    keyExtractor={(item, index) => index.toString()}
+                    renderItem={({ item }) => {
+
+                        return (
+                            <View>
+                                <TouchableHighlight
+                                    underlayColor="transparent"
+                                    onPress={() => this.props.navigation.navigate('ListRecordPlayer')}
+                                >
+                                    <View style={styles.layout}>
+                                        <BaseText style={{ fontSize: 18, fontWeight: 'bold', marginLeft: 7, color: '#000000' }}>{item.name}</BaseText>
+                                        <View style={{ flexDirection: 'row' }}>
+                                            <BaseText style={{ fontSize: 16, marginLeft: 7 }} bold>{item.date}</BaseText>
+                                            <View style={{ flex: 1, alignItems: 'flex-end' }}>
+                                                <BaseText style={{ marginRight: 5, fontSize: 16 }} bold>{item.status}</BaseText>
+                                            </View>
+                                        </View>
+                                        <View style={{ flex: 1, alignItems: 'flex-end' }}>
+                                            <BaseText style={{ marginRight: 5, fontSize: 11, color: '#ADAEAE' }} bold>{item.dateRegister}</BaseText>
+                                        </View>
+                                    </View>
+                                </TouchableHighlight>
                             </View>
-                            <View style={{ flex: 1, alignItems: 'flex-end' }}>
-                                <BaseText style={{ marginRight: 5, fontSize: 11, color: '#ADAEAE' }} bold>10:49,01/10/2018</BaseText>
-                            </View>
-                        </View>
-                    </TouchableHighlight>
-                    
-                    <View style={styles.layout}>
-                        <View style={{ marginTop: 5 }}>
-                            <BaseText style={{ fontSize: 18, fontWeight: 'bold', marginLeft: 7, color: '#000000' }}>Giải đấu trẻ Nam Định</BaseText>
-                            <View style={{ flexDirection: 'row' }}>
-                                <BaseText style={{ fontSize: 16, marginLeft: 7, color: '#ADAEAE' }} bold>20/9 - 30/9</BaseText>
-                                <View style={{ flex: 1, alignItems: 'flex-end' }}>
-                                    <BaseText style={{ marginRight: 5, fontSize: 16, color: '#FFBB4F' }} bold>Đang chờ xử lý</BaseText>
-                                </View>
-                            </View>
-                            <View style={{ flex: 1, alignItems: 'flex-end' }}>
-                                <BaseText style={{ marginRight: 5, fontSize: 11, color: '#ADAEAE' }} bold>10:49,01/10/2018</BaseText>
-                            </View>
-                        </View>
-                    </View>
-                    <View style={styles.layout}>
-                        <View style={{ marginTop: 5 }}>
-                            <BaseText style={{ fontSize: 18, fontWeight: 'bold', marginLeft: 7, color: '#000000' }}>Giải đấu trẻ Nam Định</BaseText>
-                            <View style={{ flexDirection: 'row' }}>
-                                <BaseText style={{ fontSize: 16, marginLeft: 7, color: '#ADAEAE' }} bold>20/9 - 30/9</BaseText>
-                                <View style={{ flex: 1, alignItems: 'flex-end' }}>
-                                    <BaseText style={{ marginRight: 5, fontSize: 16, color: '#6CAFFD' }} bold>Gửi thành công</BaseText>
-                                </View>
-                            </View>
-                            <View style={{ flex: 1, alignItems: 'flex-end' }}>
-                                <BaseText style={{ marginRight: 5, fontSize: 11, color: '#ADAEAE' }} bold>10:49,01/10/2018</BaseText>
-                            </View>
-                        </View>
-                    </View>
-                    <View style={styles.layout}>
-                        <View style={{ marginTop: 5 }}>
-                            <BaseText style={{ fontSize: 18, fontWeight: 'bold', marginLeft: 7, color: '#000000' }}>Giải đấu trẻ Nam Định</BaseText>
-                            <View style={{ flexDirection: 'row' }}>
-                                <BaseText style={{ fontSize: 16, marginLeft: 7, color: '#ADAEAE' }} bold>20/9 - 30/9</BaseText>
-                                <View style={{ flex: 1, alignItems: 'flex-end' }}>
-                                    <BaseText style={{ marginRight: 5, fontSize: 16, color: '#FF6362' }} bold>Bị từ chối</BaseText>
-                                </View>
-                            </View>
-                            <View style={{ flex: 1, alignItems: 'flex-end' }}>
-                                <BaseText style={{ marginRight: 5, fontSize: 11, color: '#ADAEAE' }} bold>10:49,01/10/2018</BaseText>
-                            </View>
-                        </View>
-                    </View>
-                </ScrollView>
+                        );
+                    }}
+                />
             </View>
         );
     }

@@ -17,8 +17,8 @@ export default class SignIn extends Component {
                     <BaseText style={{ color: '#006BEE', fontSize: 40}}>YOUR LOGO</BaseText>
                 </View>
                 <View style={styles.layout}>
-                    <View style={{ flex: 1, top: 20, left: 40 }}>
-                        <Image source={require('../../assets/images/contact.png')} style={{ width: 23, height: 23 }} />
+                    <View style={{ flex: 1, top: 15, left: 40 }}>
+                        <Image source={require('../../assets/images/contact.png')} style={{ width: 20, height: 20 }} resizeMode="contain" />
                     </View>
                     <View style={{ flex: 4 }}>
                         <BaseInput style={styles.inputBox}
@@ -28,8 +28,8 @@ export default class SignIn extends Component {
                 </View>
 
                 <View style={styles.layout}>
-                    <View style={{ flex: 1, top: 20, left: 40 }}>
-                        <Image source={require('../../assets/images/locked.png')} style={{ width: 20, height: 25 }} />
+                    <View style={{ flex: 1, top: 15, left: 40 }}>
+                        <Image source={require('../../assets/images/locked.png')} style={{ width: 20, height: 20 }} resizeMode="contain" />
                     </View>
                     <View style={{ flex: 4 }}>
                         <BaseInput style={styles.inputBox}
@@ -97,6 +97,8 @@ const styles = StyleSheet.create({
         borderRadius: 25,
         marginVertical: 6,
         paddingVertical: 5,
+        borderColor: '#0072FB',
+        borderWidth: 1,
        marginTop: '10%',
     },
     button1: {
